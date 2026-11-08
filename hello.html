@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Привет!</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      overflow: hidden;
+    }
+    #hello {
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      color: #fff;
+      user-select: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div id="hello">привет</div>
+
+  <script>
+    const el = document.getElementById("hello");
+
+    function fitText() {
+      const size = window.innerWidth / 3.2;
+      el.style.fontSize = size + "px";
+    }
+    fitText();
+    window.addEventListener("resize", fitText);
+
+    let hue = 0;
+    setInterval(() => {
+      hue = (hue + 1) % 360;
+      el.style.color = `hsl(${hue}, 80%, 60%)`;
+    }, 40);
+
+    document.body.addEventListener("click", () => {
+      el.animate(
+        [
+          { transform: "scale(1)" },
+          { transform: "scale(1.15)" },
+          { transform: "scale(1)" }
+        ],
+        { duration: 300 }
+      );
+    });
+  </script>
+</body>
+</html>
